@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Cake, Gift, Heart, PartyPopper } from 'lucide-react';
 import Confetti from './Confetti';
 import Fireworks from './Fireworks';
@@ -11,55 +11,7 @@ interface CelebrationScreenProps {
 function CelebrationScreen({ friendName }: CelebrationScreenProps) {
   const [showGift, setShowGift] = useState(false);
   // Set this to your Happy Birthday audio URL; it will auto-play when the final message opens
-  // If you place the file in /public as happy-birthday-254480.mp3, this path will work directly
   const happyBirthdayAudioUrl = "/happy-birthday-254480.mp3";
-  
-  // Play a pleasant chime when celebration appears
-  useEffect(() => {
-    try {
-      const AudioCtx = (window as any).AudioContext || (window as any).webkitAudioContext;
-      const ctx: AudioContext = new AudioCtx();
-
-      const playNote = (freq: number, start: number, duration: number, vol: number) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, ctx.currentTime + start);
-        gain.gain.setValueAtTime(0.0001, ctx.currentTime + start);
-        gain.gain.exponentialRampToValueAtTime(vol, ctx.currentTime + start + 0.02);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + start + duration);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(ctx.currentTime + start);
-        osc.stop(ctx.currentTime + start + duration + 0.02);
-      };
-
-      // Simple happy arpeggio (C major): C5, E5, G5, C6
-      const base = 0.0;
-      playNote(523.25, base + 0.00, 0.30, 0.15);
-      playNote(659.25, base + 0.20, 0.30, 0.14);
-      playNote(783.99, base + 0.40, 0.30, 0.13);
-      playNote(1046.50, base + 0.65, 0.45, 0.12);
-
-      // Soft pad underlay
-      const padOsc = ctx.createOscillator();
-      const padGain = ctx.createGain();
-      padOsc.type = 'triangle';
-      padOsc.frequency.setValueAtTime(261.63, ctx.currentTime); // C4
-      padGain.gain.setValueAtTime(0.0001, ctx.currentTime);
-      padGain.gain.linearRampToValueAtTime(0.03, ctx.currentTime + 0.2);
-      padGain.gain.linearRampToValueAtTime(0.0, ctx.currentTime + 2.2);
-      padOsc.connect(padGain);
-      padGain.connect(ctx.destination);
-      padOsc.start();
-      padOsc.stop(ctx.currentTime + 2.3);
-
-      // Auto-close context shortly after to release resources
-      setTimeout(() => {
-        try { ctx.close(); } catch {}
-      }, 3000);
-    } catch {}
-  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
@@ -131,11 +83,8 @@ function CelebrationScreen({ friendName }: CelebrationScreenProps) {
               </div>
             </div>
           )}
-
-          
         </div>
       </div>
-      
     </div>
   );
 }
