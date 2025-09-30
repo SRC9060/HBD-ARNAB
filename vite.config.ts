@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/HBD-ARNAB/', // Required for correct asset paths on GitHub Pages
+  base: '/', // Use root for Netlify deployment
   plugins: [react()],
   optimizeDeps: {
     exclude: ['lucide-react'],
