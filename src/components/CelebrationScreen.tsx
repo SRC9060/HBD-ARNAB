@@ -59,7 +59,7 @@ function CelebrationScreen({ friendName }: CelebrationScreenProps) {
                   <Gift className="w-12 h-12 mx-auto text-white animate-bounce" />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Your Special Birthday Message
+                  Message from IT SUPERBS :)
                 </h3>
                 <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 md:p-6">
                   {happyBirthdayAudioUrl && (
@@ -68,6 +68,7 @@ function CelebrationScreen({ friendName }: CelebrationScreenProps) {
                     </audio>
                   )}
                   <p className="text-lg md:text-xl text-white leading-relaxed mb-4">
+                    <span className="text-brown-300 font-bold">Dear Panu</span>,
                     May this year bring you endless opportunities, wonderful adventures,
                     and cherished memories that last a lifetime.
                   </p>
@@ -75,8 +76,8 @@ function CelebrationScreen({ friendName }: CelebrationScreenProps) {
                     You deserve all the happiness in the world! Keep shining bright,
                     keep spreading joy, and never stop chasing your dreams.
                   </p>
-                  <p className="text-xl md:text-2xl font-bold text-yellow-100">
-                    Here's to another amazing year of YOU!
+                  <p className="text-xl md:text-2xl font-bold text-green-100">
+                    Here's to another amazing year of YOU!  ~IT SUPERBS
                   </p>
                   <p className="text-3xl mt-4">🌟✨🎊🎈</p>
                 </div>
